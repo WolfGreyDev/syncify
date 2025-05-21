@@ -43,11 +43,11 @@ function Default() {
 // syncify/cli/help/information.ts
 function Inspect() {
   syncify_js.log.clear();
-  syncify_js.pt().BR.Top("Inspect").Header(`${syncify_js.Ve.bold("@syncify/cli")}`).Line(`${syncify_js.a("VERSION")}${syncify_js.L}  v${syncify_js.I("1.0.0-unstable.0")}`).Line(`${syncify_js.a("HOT")}${syncify_js.L}      v${syncify_js.I("0.4.9")}`).Line(`${syncify_js.a("LICENSE")}${syncify_js.L}  ${syncify_js.I("Apache 2.0")}`).Line(`${syncify_js.a("AUTHOR")}${syncify_js.L}   ${syncify_js.I("\u039D\u03B9\u03BA\u03BF\u03BB\u03B1\u03C2 \u03A3\u03B1\u03B2\u03B2\u03B9\u03B4\u03B7\u03C2")}`).Line(`${syncify_js.a("PM")}${syncify_js.L}       ${syncify_js.I(syncify_js.$.pm)}`).Line(`${syncify_js.a("OS")}${syncify_js.L}       ${syncify_js.I(syncify_js.$.platform)}`).Line(`${syncify_js.a("BINARY")}${syncify_js.L}   ${syncify_js.I(syncify_js.$.using)}`).Line(`${syncify_js.a("CWD")}${syncify_js.L}      ${syncify_js.I(syncify_js.$.cwd)}`).Line(`${syncify_js.a("HASH")}${syncify_js.L}     ${syncify_js.I(syncify_js.$.hash)}`).Line(`${syncify_js.a("SCRIPT")}${syncify_js.L}   ${syncify_js.I(syncify_js.$.bin)}`).Line(`${syncify_js.a("MODULE")}${syncify_js.L}   ${syncify_js.I(syncify_js.$.dirs.module)}`).Line(`${syncify_js.a("STORE")}${syncify_js.L}    ${syncify_js.I(syncify_js.$.home)}`).Line(`${syncify_js.a("KEYCHAIN")}${syncify_js.L} ${syncify_js.I(`${syncify_js.$.file.keychain}`)}`).Line(`${syncify_js.a("GITHUB")}${syncify_js.L}   ${syncify_js.I(syncify_js.$.github)}`).Line(`${syncify_js.a("WEBSITE")}${syncify_js.L}  ${syncify_js.I("https://syncify.sh")}`).NL.End("Inspect").BR.toLog().Break();
+  syncify_js.pt().BR.Top("Inspect").Header(`${syncify_js.Ve.bold("@syncify/cli")}`).Line(`${syncify_js.a("VERSION")}${syncify_js.L}  v${syncify_js.I("1.0.0-unstable.2")}`).Line(`${syncify_js.a("HOT")}${syncify_js.L}      v${syncify_js.I("0.5.0")}`).Line(`${syncify_js.a("LICENSE")}${syncify_js.L}  ${syncify_js.I("Apache 2.0")}`).Line(`${syncify_js.a("AUTHOR")}${syncify_js.L}   ${syncify_js.I("\u039D\u03B9\u03BA\u03BF\u03BB\u03B1\u03C2 \u03A3\u03B1\u03B2\u03B2\u03B9\u03B4\u03B7\u03C2")}`).Line(`${syncify_js.a("PM")}${syncify_js.L}       ${syncify_js.I(syncify_js.$.pm)}`).Line(`${syncify_js.a("OS")}${syncify_js.L}       ${syncify_js.I(syncify_js.$.platform)}`).Line(`${syncify_js.a("BINARY")}${syncify_js.L}   ${syncify_js.I(syncify_js.$.using)}`).Line(`${syncify_js.a("CWD")}${syncify_js.L}      ${syncify_js.I(syncify_js.$.cwd)}`).Line(`${syncify_js.a("HASH")}${syncify_js.L}     ${syncify_js.I(syncify_js.$.hash)}`).Line(`${syncify_js.a("SCRIPT")}${syncify_js.L}   ${syncify_js.I(syncify_js.$.bin)}`).Line(`${syncify_js.a("MODULE")}${syncify_js.L}   ${syncify_js.I(syncify_js.$.dirs.module)}`).Line(`${syncify_js.a("STORE")}${syncify_js.L}    ${syncify_js.I(syncify_js.$.home)}`).Line(`${syncify_js.a("KEYCHAIN")}${syncify_js.L} ${syncify_js.I(`${syncify_js.$.file.keychain}`)}`).Line(`${syncify_js.a("GITHUB")}${syncify_js.L}   ${syncify_js.I(syncify_js.$.github)}`).Line(`${syncify_js.a("WEBSITE")}${syncify_js.L}  ${syncify_js.I("https://syncify.sh")}`).NL.End("Inspect").BR.toLog().Break();
 }
 function Version() {
   syncify_js.log.clear();
-  syncify_js.pt().BR.Top("Versions", false).NL.Line(`${syncify_js.I("@syncify/cli")}  ${syncify_js.q}  ${syncify_js.I("v1.0.0-unstable.0")}`).Line(`${syncify_js.I("@syncify/hot")}  ${syncify_js.q}  ${syncify_js.I("v0.4.9")}`).NL.End("Versions", false).BR.toLog().Break();
+  syncify_js.pt().BR.Top("Versions", false).NL.Line(`${syncify_js.I("@syncify/cli")}  ${syncify_js.q}  ${syncify_js.I("v1.0.0-unstable.2")}`).Line(`${syncify_js.I("@syncify/hot")}  ${syncify_js.q}  ${syncify_js.I("v0.5.0")}`).NL.End("Versions", false).BR.toLog().Break();
 }
 
 // syncify/cli/help/descriptions.ts
@@ -146,7 +146,7 @@ Modes.build = () => {
 
 // syncify/cli/help/suggest.ts
 function Suggest() {
-  syncify_js.pt().Top(`Syncify ${syncify_js.Uu} Error`, false).Header("1.0.0-unstable.0", syncify_js.a).Error("MISSING COMMAND " + syncify_js.Pt, syncify_js.x.redBright).Newline("red").Error("Please provide a command line argument", syncify_js.T).Header(`USAGE${syncify_js.L}`, syncify_js.x).Line(` $ sy <${syncify_js.du("mode")}>`).Line(` $ sy <${syncify_js.du("mode")}> --flags`).Line(` $ sy <${syncify_js.du("mode")}> [options]`).Line(` $ sy <${syncify_js.du("mode")}> [options] --flags`).Header(`HELP${syncify_js.L}`, syncify_js.x).Line(" $ sy help").Line(` $ sy <${syncify_js.du("mode")}> --help`).NL.End(`Syncify ${syncify_js.Uu} Error`, false).BR.toLog(highlight).Break();
+  syncify_js.pt().Top(`Syncify ${syncify_js.Uu} Error`, false).Header("1.0.0-unstable.2", syncify_js.a).Error("MISSING COMMAND " + syncify_js.Pt, syncify_js.x.redBright).Newline("red").Error("Please provide a command line argument", syncify_js.T).Header(`USAGE${syncify_js.L}`, syncify_js.x).Line(` $ sy <${syncify_js.du("mode")}>`).Line(` $ sy <${syncify_js.du("mode")}> --flags`).Line(` $ sy <${syncify_js.du("mode")}> [options]`).Line(` $ sy <${syncify_js.du("mode")}> [options] --flags`).Header(`HELP${syncify_js.L}`, syncify_js.x).Line(" $ sy help").Line(` $ sy <${syncify_js.du("mode")}> --help`).NL.End(`Syncify ${syncify_js.Uu} Error`, false).BR.toLog(highlight).Break();
 }
 
 // syncify/mode/help.ts
@@ -398,7 +398,7 @@ function command(commands) {
   syncify_js.$.env.cli = true;
   node_process.env.SYNCIFY_ENV = syncify_js.$.env.dev ? "dev" : "prod";
   node_process.env.SYNCIFY_WATCH = String(syncify_js.$.mode.watch);
-  node_process.env.SYNCIFY_VERSION = "1.0.0-unstable.0";
+  node_process.env.SYNCIFY_VERSION = "1.0.0-unstable.2";
   return (fn) => fn();
 }
 

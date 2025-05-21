@@ -45,7 +45,7 @@ var esbuild__default = /*#__PURE__*/_interopDefault(esbuild);
 var fsPromises2__default = /*#__PURE__*/_interopDefault(fsPromises2);
 
 /**
- * SYNCIFY CLI ~ v1.0.0-unstable.0
+ * SYNCIFY CLI ~ v1.0.0-unstable.2
  *
  * E: n.savvidis@gmx.com
  * X: @niksavvidis
@@ -10958,6 +10958,8 @@ function parse2(path5) {
       return section(define("sections" /* Sections */, 5 /* Section */, "Liquid" /* Liquid */));
     } else if (paths.snippets.match(path5)) {
       return snippet(define("snippets" /* Snippets */, 4 /* Snippet */, "Liquid" /* Liquid */));
+    } else if (paths.blocks.match(path5)) {
+      return snippet(define("blocks" /* Blocks */, 3 /* Block */, "Liquid" /* Liquid */));
     } else if (paths.layout.match(path5)) {
       return define("layout" /* Layout */, 2 /* Layout */, "Liquid" /* Liquid */);
     } else if (paths.templates.match(path5)) {
@@ -11910,7 +11912,7 @@ var $ = new class Bundle {
   /**
    * The version of Syncify running
    */
-  version = "1.0.0-unstable.0";
+  version = "1.0.0-unstable.2";
   /**
    * **READY AT RUNTIME**
    *
@@ -12152,7 +12154,7 @@ var $ = new class Bundle {
     version: o2({
       source: null,
       remote: null,
-      local: "0.4.9"
+      local: "0.5.0"
     }),
     flags: o2({
       "no-preview-bar": true,
@@ -16782,32 +16784,35 @@ async function writePackage(filePath, data, options) {
   return writeJsonFile(filePath, data, options);
 }
 
-// node_modules/.pnpm/parse-json@8.3.0/node_modules/parse-json/index.js
+// node_modules/.pnpm/parse-json@8.2.0/node_modules/parse-json/index.js
 var import_code_frame = __toESM(require_lib4(), 1);
 
-// node_modules/.pnpm/index-to-position@1.1.0/node_modules/index-to-position/index.js
+// node_modules/.pnpm/index-to-position@1.0.0/node_modules/index-to-position/index.js
+var safeLastIndexOf = (string, searchString, index) => index < 0 ? -1 : string.lastIndexOf(searchString, index);
 function getPosition(text, textIndex) {
-  const lineBreakBefore = textIndex === 0 ? -1 : text.lastIndexOf("\n", textIndex - 1);
-  return {
-    line: lineBreakBefore === -1 ? 0 : text.slice(0, lineBreakBefore + 1).match(/\n/g).length,
-    column: textIndex - lineBreakBefore - 1
-  };
+  const lineBreakBefore = safeLastIndexOf(text, "\n", textIndex - 1);
+  const column = textIndex - lineBreakBefore - 1;
+  let line = 0;
+  for (let index = lineBreakBefore; index >= 0; index = safeLastIndexOf(text, "\n", index - 1)) {
+    line++;
+  }
+  return { line, column };
 }
-function indexToPosition(text, textIndex, { oneBased = false } = {}) {
+function indexToLineColumn(text, textIndex, { oneBased = false } = {}) {
   if (typeof text !== "string") {
     throw new TypeError("Text parameter should be a string");
   }
   if (!Number.isInteger(textIndex)) {
     throw new TypeError("Index parameter should be an integer");
   }
-  if (textIndex < 0 || textIndex > text.length) {
+  if (textIndex < 0 || textIndex >= text.length && text.length > 0) {
     throw new RangeError("Index out of bounds");
   }
   const position = getPosition(text, textIndex);
   return oneBased ? { line: position.line + 1, column: position.column + 1 } : position;
 }
 
-// node_modules/.pnpm/parse-json@8.3.0/node_modules/parse-json/index.js
+// node_modules/.pnpm/parse-json@8.2.0/node_modules/parse-json/index.js
 var getCodePoint = (character) => `\\u{${character.codePointAt(0).toString(16)}}`;
 var _input, _jsonParseError, _message, _codeFrame, _rawCodeFrame, _JSONError_instances, getCodeFrame_fn;
 var _JSONError = class _JSONError extends Error {
@@ -16888,11 +16893,16 @@ var getErrorLocation = (string, message) => {
   if (!match) {
     return;
   }
-  const { index, line, column } = match.groups;
+  let { index, line, column } = match.groups;
   if (line && column) {
     return { line: Number(line), column: Number(column) };
   }
-  return indexToPosition(string, Number(index), { oneBased: true });
+  index = Number(index);
+  if (index === string.length) {
+    const { line: line2, column: column2 } = indexToLineColumn(string, string.length - 1, { oneBased: true });
+    return { line: line2, column: column2 + 1 };
+  }
+  return indexToLineColumn(string, index, { oneBased: true });
 };
 var addCodePointToUnexpectedToken = (message) => message.replace(
   // TODO[engine:node@>=20]: The token always quoted after Node.js 20
@@ -18301,8 +18311,8 @@ function project() {
     $.project = projectProxy({
       name,
       dir,
-      syncifyVersion: "1.0.0-unstable.0",
-      hotVersion: "0.4.9",
+      syncifyVersion: "1.0.0-unstable.2",
+      hotVersion: "0.5.0",
       configVersion: null,
       themeVersion: null,
       targetSource: null,
@@ -19954,9 +19964,9 @@ async function setHotReloads() {
   if (!fsExtra.existsSync($.hot.source)) {
     fsExtra.copyFileSync(path2.join($.dirs.module, HOT_SNIPPET), $.hot.source);
   } else {
-    if ($.project.hotVersion !== "0.4.9") {
+    if ($.project.hotVersion !== "0.5.0") {
       fsExtra.copyFileSync(path2.join($.dirs.module, HOT_SNIPPET), $.hot.source);
-      $.project.hotVersion = "0.4.9";
+      $.project.hotVersion = "0.5.0";
     }
   }
   $.hot.cache.root = path2.join($.dirs.hot, `${$.target.default.id}`);
