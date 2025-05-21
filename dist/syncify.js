@@ -15764,7 +15764,7 @@ function InjectBlocks(file, schema2) {
       for (const prop in schema2[i2]) {
         if (prop !== "settings") block[prop] = schema2[i2][prop];
       }
-      if (block.type === "@app") {
+      if (block.type === "@theme" || block.type === "@app") {
         blocks.push(block);
         continue;
       }
