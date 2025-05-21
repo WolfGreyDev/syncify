@@ -16016,7 +16016,7 @@ async function LiquidTransform(file) {
   if ($.mode.hot && $.hot.layouts.includes(file.base)) {
     input = injectRenderSnippet(input);
   }
-  if (file.type === 5 /* Section */) {
+  if (file.type === 5 /* Section */ || file.type === 3 /* Block */) {
     input = await CreateSection(file);
     if (input === null) return null;
   }
